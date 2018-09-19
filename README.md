@@ -1,2 +1,3 @@
-# semver-maven-plugin
-Semantic versioning maven plugin
+# SEMVER-MAVEN-PLUGIN
+
+Semantic versioning maven plugin.
