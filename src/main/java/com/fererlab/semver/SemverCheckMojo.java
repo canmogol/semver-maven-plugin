@@ -4,7 +4,6 @@ import com.fererlab.semver.gitflow.GitFlowStrategy;
 import com.fererlab.semver.github.GithubFlowStrategy;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -24,6 +23,8 @@ public class SemverCheckMojo extends AbstractMojo {
     private Map<String, String> parameters;
 
     private FlowContext context = new FlowContext();
+    private SemverModelFactory semverModelFactory;
+    private DefaultParameterFactory defaultParameterFactory;
 
     /**
      * Maven plugin execution entry point.
@@ -33,18 +34,15 @@ public class SemverCheckMojo extends AbstractMojo {
     @Override
     public final void execute() throws MojoExecutionException {
         initialize();
-        validate();
         FlowStrategy strategy = createStrategy(type);
         context.validate(strategy);
     }
 
     private void initialize() {
-        
+        defaultParameterFactory = new DefaultParameterFactory();
+        semverModelFactory = new SemverModelFactory(defaultParameterFactory);
     }
 
-    private void validate() {
-
-    }
 
     /**
      * Creates a flow instance according to flowType parameter.
@@ -56,9 +54,9 @@ public class SemverCheckMojo extends AbstractMojo {
     private FlowStrategy createStrategy(final String flowType) throws MojoExecutionException {
         switch (flowType) {
             case "gitflow":
-                return new GitFlowStrategy(parameters);
+                return new GitFlowStrategy(parameters, semverModelFactory);
             case "github":
-                return new GithubFlowStrategy(parameters);
+                return new GithubFlowStrategy(parameters, semverModelFactory);
             default:
                 throw new MojoExecutionException(flowType + " is not a defined flow.");
         }

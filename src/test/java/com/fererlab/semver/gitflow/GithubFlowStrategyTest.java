@@ -1,6 +1,8 @@
 package com.fererlab.semver.gitflow;
 
+import com.fererlab.semver.DefaultParameterFactory;
 import com.fererlab.semver.FlowException;
+import com.fererlab.semver.SemverModelFactory;
 import com.fererlab.semver.github.GithubFlowStrategy;
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,8 +20,14 @@ public class GithubFlowStrategyTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
+    private GithubFlowStrategy githubFlowStrategy;
+
     @Before
     public void setup() {
+        DefaultParameterFactory defaultParameterFactory = new DefaultParameterFactory();
+        SemverModelFactory semverModelFactory = new SemverModelFactory(defaultParameterFactory);
+        Map<String, String> parameters = new HashMap<>();
+        githubFlowStrategy = new GithubFlowStrategy(parameters, semverModelFactory);
     }
 
     /**
@@ -28,8 +36,6 @@ public class GithubFlowStrategyTest {
     @Test
     public void shouldFailOnSameVersionNumber() throws Exception {
         expectedException.expect(FlowException.class);
-        Map<String, String> parameters = new HashMap<>();
-        GithubFlowStrategy githubFlowStrategy = new GithubFlowStrategy(parameters);
         githubFlowStrategy.validate();
     }
 

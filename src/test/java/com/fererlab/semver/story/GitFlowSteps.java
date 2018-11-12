@@ -1,7 +1,10 @@
 package com.fererlab.semver.story;
 
 
+import com.fererlab.semver.DefaultParameterFactory;
 import com.fererlab.semver.FlowException;
+import com.fererlab.semver.Params;
+import com.fererlab.semver.SemverModelFactory;
 import com.fererlab.semver.gitflow.GitFlowStrategy;
 import org.hamcrest.Matchers;
 import org.jbehave.core.annotations.Given;
@@ -31,37 +34,44 @@ public class GitFlowSteps {
 
     @Given("the current branch is $current")
     public void whenTheCurrentBranchIs(String current) {
-        parameters.put("current", current);
+        parameters.put(Params.CURRENT.getName(), current);
     }
 
     @Given("the target branch is $target")
     public void whenTheTargetBranchIs(String target) {
-        parameters.put("target", target);
+        parameters.put(Params.TARGET.getName(), target);
     }
 
     @Given("the type is $type")
     public void whenTheTypeIs(String type) {
-        parameters.put("type", type);
+        parameters.put(Params.TYPE.getName(), type);
+    }
+
+    @Given("the directory is $directory")
+    public void whenTheDirectoryIs(String directory) {
+        parameters.put(Params.DIRECTORY.getName(), directory);
     }
 
     @Given("the user is $user")
     public void whenTheUserIs(String user) {
-        parameters.put("user", user);
+        parameters.put(Params.USER.getName(), user);
     }
 
     @Given("the project is $project")
     public void whenTheProjectIs(String project) {
-        parameters.put("project", project);
+        parameters.put(Params.PROJECT.getName(), project);
     }
 
     @Given("the url is $url")
     public void whenTheUrlIs(String url) {
-        parameters.put("url", url);
+        parameters.put(Params.URL.getName(), url);
     }
 
     @Given("a gitflow semver checker")
     public void givenAGitflowSemverChecker() {
-        gitFlowStrategy = new GitFlowStrategy(parameters);
+        DefaultParameterFactory defaultParameterFactory = new DefaultParameterFactory();
+        SemverModelFactory semverModelFactory = new SemverModelFactory(defaultParameterFactory);
+        gitFlowStrategy = new GitFlowStrategy(parameters, semverModelFactory);
     }
 
     @When("it checks current against target using parameter map")

@@ -7,4 +7,5 @@
 <suppressions>
     <suppress files="[\\/]com.fererlab.semver[\\/].*\.java$" checks="JavadocVariable"/>
     <suppress files="[\\/]com.fererlab.semver[\\/].*\.java$" checks="JavadocPackage"/>
+    <suppress files="[\\/]com.fererlab.semver[\\/].*\.java$" checks="AvoidInlineConditionals"/>
 </suppressions>

@@ -1,8 +1,12 @@
 package com.fererlab.semver.gitflow;
 
+import com.fererlab.semver.DefaultParameterFactory;
 import com.fererlab.semver.FlowException;
+import com.fererlab.semver.SemverModelFactory;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.HashMap;
 
@@ -11,11 +15,16 @@ import java.util.HashMap;
  */
 public class GitFlowStrategyTest {
 
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
     private GitFlowStrategy gitFlowStrategy;
 
     @Before
     public void setup() {
-        gitFlowStrategy = new GitFlowStrategy(new HashMap<>());
+        DefaultParameterFactory defaultParameterFactory = new DefaultParameterFactory();
+        SemverModelFactory semverModelFactory = new SemverModelFactory(defaultParameterFactory);
+        final HashMap<String, String> params = new HashMap<>();
+        gitFlowStrategy = new GitFlowStrategy(params, semverModelFactory);
     }
 
     /**
@@ -23,11 +32,8 @@ public class GitFlowStrategyTest {
      */
     @Test
     public void shouldFailOnSameVersionNumber() throws Exception {
-        try {
-            gitFlowStrategy.validate();
-        } catch (FlowException e) {
-            throw new Exception(e);
-        }
+        expectedException.expect(FlowException.class);
+        gitFlowStrategy.validate();
     }
 
 }

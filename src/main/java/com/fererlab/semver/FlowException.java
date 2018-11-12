@@ -17,4 +17,13 @@ public class FlowException extends MojoExecutionException {
         super(message);
     }
 
+    /**
+     * Flow exception constructor.
+     *
+     * @param message error message
+     * @param cause cause exception
+     */
+    public FlowException(final String message, final Exception cause) {
+        super(message, cause);
+    }
 }

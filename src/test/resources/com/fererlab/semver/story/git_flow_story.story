@@ -8,8 +8,9 @@ So that when I merge the feature branch to development branch it corresponds to 
 Scenario: check version of feature against development
 Given a gitflow parameter map
 Given the current branch is feature/issue-111-a-very-important-one
-Given the target branch is devel
-Given the type is maven
+Given the target branch is master
+Given the type is pom.xml
+Given the directory is /Users/alicanmogol/projects/canmogol/semver-maven-plugin
 Given the user is canmogol
 Given the project is semver-maven-plugin
 Given the url is https://raw.githubusercontent.com/$user/$project/$target/$type_file

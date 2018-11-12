@@ -1,18 +1,27 @@
 package com.fererlab.semver;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Logger for DefaultParameterFactory.
+ */
+@Slf4j
 public class DefaultParameterFactoryLogger {
 
-    private Logger logger = Logger.getLogger(getClass().getSimpleName());
-
-    public void couldNotReadConfiguration(String errorMessage) {
-        logger.log(Level.SEVERE, String.format("Could not read configuration, exception: %s", errorMessage));
+    /**
+     * logs the configuration file cannot be read.
+     * @param errorMessage exception's message
+     */
+    public final void couldNotReadConfiguration(final String errorMessage) {
+        log.error(String.format("Could not read configuration, exception: %s", errorMessage));
     }
 
-    public void willLoadConfigurationFile(String configurationFile) {
-        logger.log(Level.INFO, String.format("will load configuration file: %s", configurationFile));
+    /**
+     * logs the name of the configuration file that will be loaded.
+     * @param configurationFile name of the configuration file
+     */
+    public final void willLoadConfigurationFile(final String configurationFile) {
+        log.info(String.format("will load configuration file: %s", configurationFile));
     }
 
 }

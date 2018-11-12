@@ -29,8 +29,12 @@
         <jacoco.branch-coverage>0.90</jacoco.branch-coverage>
         <jacoco.complexity-coverage>0.90</jacoco.complexity-coverage>
         <version.maven-surefire-plugin>2.19.1</version.maven-surefire-plugin>
-        <!-- dependencies -->
+        <!-- provided -->
         <version.maven-plugin-annotations>3.4</version.maven-plugin-annotations>
+        <!-- dependencies -->
+        <version.slf4j-api>1.7.25</version.slf4j-api>
+        <version.logback-classic>1.2.3</version.logback-classic>
+        <version.okhttp3>3.11.0</version.okhttp3>
     </properties>
 
     <dependencies>
@@ -43,6 +47,25 @@
         <!-- ********* -->
         <!-- PACK WITH -->
         <!-- ********* -->
+        <!-- SLF4J -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j-api}</version>
+        </dependency>
+        <!-- LogBack -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${version.logback-classic}</version>
+        </dependency>
+        <!-- OKHTTP -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${version.okhttp3}</version>
+        </dependency>
+
 
         <!-- MAVEN PLUGIN -->
         <dependency>
@@ -94,7 +117,6 @@
             <version>${version.mockito-all}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
