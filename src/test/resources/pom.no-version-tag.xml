@@ -5,7 +5,7 @@
 
     <groupId>com.mergenie</groupId>
     <artifactId>semver</artifactId>
-    <version>0.0.2</version>
+    <!-- VERSION TAG IS MISSING IN THIS POM! -->
     <packaging>jar</packaging>
 
     <name>semver</name>

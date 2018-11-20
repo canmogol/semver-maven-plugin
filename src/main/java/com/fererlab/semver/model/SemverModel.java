@@ -1,4 +1,4 @@
-package com.fererlab.semver;
+package com.fererlab.semver.model;
 
 import lombok.Builder;
 import lombok.Data;

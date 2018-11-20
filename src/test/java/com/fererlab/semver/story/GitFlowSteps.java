@@ -1,11 +1,13 @@
 package com.fererlab.semver.story;
 
 
-import com.fererlab.semver.DefaultParameterFactory;
-import com.fererlab.semver.FlowException;
-import com.fererlab.semver.Params;
-import com.fererlab.semver.SemverModelFactory;
+import com.fererlab.semver.params.DefaultParameterFactory;
+import com.fererlab.semver.flow.FlowException;
+import com.fererlab.semver.http.HttpClient;
+import com.fererlab.semver.params.Params;
+import com.fererlab.semver.model.SemverModelFactory;
 import com.fererlab.semver.gitflow.GitFlowStrategy;
+import lombok.val;
 import org.hamcrest.Matchers;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -69,9 +71,10 @@ public class GitFlowSteps {
 
     @Given("a gitflow semver checker")
     public void givenAGitflowSemverChecker() {
-        DefaultParameterFactory defaultParameterFactory = new DefaultParameterFactory();
-        SemverModelFactory semverModelFactory = new SemverModelFactory(defaultParameterFactory);
-        gitFlowStrategy = new GitFlowStrategy(parameters, semverModelFactory);
+        val defaultParameterFactory = new DefaultParameterFactory();
+        val semverModelFactory = new SemverModelFactory(defaultParameterFactory);
+        val httpClient = new HttpClient();
+        gitFlowStrategy = new GitFlowStrategy(parameters, semverModelFactory, httpClient);
     }
 
     @When("it checks current against target using parameter map")

@@ -1,4 +1,4 @@
-package com.fererlab.semver;
+package com.fererlab.semver.params;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

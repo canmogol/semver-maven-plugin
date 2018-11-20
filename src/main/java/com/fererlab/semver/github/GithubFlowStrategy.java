@@ -1,9 +1,10 @@
 package com.fererlab.semver.github;
 
-import com.fererlab.semver.FlowException;
-import com.fererlab.semver.FlowStrategy;
-import com.fererlab.semver.SemverModel;
-import com.fererlab.semver.SemverModelFactory;
+import com.fererlab.semver.flow.FlowException;
+import com.fererlab.semver.flow.FlowStrategy;
+import com.fererlab.semver.http.HttpClient;
+import com.fererlab.semver.model.SemverModel;
+import com.fererlab.semver.model.SemverModelFactory;
 
 import java.util.Collections;
 import java.util.Map;
@@ -18,18 +19,23 @@ public class GithubFlowStrategy implements FlowStrategy {
      */
     private final Map<String, String> parameters;
 
-    private SemverModelFactory semverModelFactory;
+    private final HttpClient httpClient;
+
+    private final SemverModelFactory semverModelFactory;
 
     /**
      * Constructor with parameters.
      *
      * @param params  validation parameters
      * @param factory Semantic Version Model Factory
+     * @param client http client
      */
     public GithubFlowStrategy(final Map<String, String> params,
-                              final SemverModelFactory factory) {
+                              final SemverModelFactory factory,
+                              final HttpClient client) {
         this.parameters = Collections.unmodifiableMap(params);
         this.semverModelFactory = factory;
+        this.httpClient = client;
     }
 
     /**

@@ -1,4 +1,8 @@
-package com.fererlab.semver;
+package com.fererlab.semver.model;
+
+import com.fererlab.semver.flow.FlowException;
+import com.fererlab.semver.params.DefaultParameterFactory;
+import com.fererlab.semver.params.Params;
 
 import java.util.Map;
 
@@ -37,7 +41,7 @@ public class SemverModelFactory {
                 .url(getParameter(params, Params.URL.getName()))
                 .build();
         } catch (IllegalArgumentException e) {
-            throw new FlowException(e.getMessage(), e);
+            throw new FlowException(e.getMessage());
         }
     }
 

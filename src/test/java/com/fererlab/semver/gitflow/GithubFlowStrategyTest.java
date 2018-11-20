@@ -1,8 +1,9 @@
 package com.fererlab.semver.gitflow;
 
-import com.fererlab.semver.DefaultParameterFactory;
-import com.fererlab.semver.FlowException;
-import com.fererlab.semver.SemverModelFactory;
+import com.fererlab.semver.params.DefaultParameterFactory;
+import com.fererlab.semver.flow.FlowException;
+import com.fererlab.semver.http.HttpClient;
+import com.fererlab.semver.model.SemverModelFactory;
 import com.fererlab.semver.github.GithubFlowStrategy;
 import org.junit.Before;
 import org.junit.Rule;
@@ -26,8 +27,9 @@ public class GithubFlowStrategyTest {
     public void setup() {
         DefaultParameterFactory defaultParameterFactory = new DefaultParameterFactory();
         SemverModelFactory semverModelFactory = new SemverModelFactory(defaultParameterFactory);
+        HttpClient httpClient = new HttpClient();
         Map<String, String> parameters = new HashMap<>();
-        githubFlowStrategy = new GithubFlowStrategy(parameters, semverModelFactory);
+        githubFlowStrategy = new GithubFlowStrategy(parameters, semverModelFactory, httpClient);
     }
 
     /**

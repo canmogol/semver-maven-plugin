@@ -1,4 +1,4 @@
-package com.fererlab.semver;
+package com.fererlab.semver.flow;
 
 /**
  * Defines the flow operation.

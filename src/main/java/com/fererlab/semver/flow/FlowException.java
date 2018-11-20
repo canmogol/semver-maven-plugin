@@ -1,4 +1,4 @@
-package com.fererlab.semver;
+package com.fererlab.semver.flow;
 
 import org.apache.maven.plugin.MojoExecutionException;
 
