@@ -33,7 +33,7 @@
         <version.maven-plugin-annotations>3.4</version.maven-plugin-annotations>
         <!-- dependencies -->
         <version.slf4j-api>1.7.25</version.slf4j-api>
-        <version.logback-classic>1.2.3</version.logback-classic>
+        <version.logback-classic>1.2.13</version.logback-classic>
         <version.okhttp3>3.11.0</version.okhttp3>
     </properties>
 
